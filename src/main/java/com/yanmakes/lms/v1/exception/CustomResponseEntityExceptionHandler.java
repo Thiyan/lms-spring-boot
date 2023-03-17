@@ -1,5 +1,7 @@
 package com.yanmakes.lms.v1.exception;
 
+import com.yanmakes.lms.v1.exception.model.ExceptionDetails;
+import com.yanmakes.lms.v1.exception.model.ValidationExceptionDetails;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({Exception.class, RuntimeException.class})
     public ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {
         ExceptionDetails exceptionDetails = new ExceptionDetails(LocalDateTime.now(),
                 ex.getMessage(),
@@ -41,7 +43,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ExceptionDetails exceptionDetails = new ExceptionDetails(LocalDateTime.now(),
+        ValidationExceptionDetails exceptionDetails = new ValidationExceptionDetails(LocalDateTime.now(),
                 ex.getFieldError().getDefaultMessage(),
                 request.getDescription(false),
                 ex.getErrorCount(),

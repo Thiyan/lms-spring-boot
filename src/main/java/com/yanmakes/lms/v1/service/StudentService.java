@@ -1,21 +1,19 @@
 package com.yanmakes.lms.v1.service;
 
-import com.yanmakes.lms.v1.model.Student;
+import com.yanmakes.lms.v1.dto.StudentDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
 
 public interface StudentService {
 
-    CollectionModel<Page<Student>> getAll(Pageable pageable);
+    CollectionModel<Page<StudentDTO>> getAll(Pageable pageable);
 
-    ResponseEntity<Student> createOne(Student student);
+    StudentDTO createOne(StudentDTO student);
 
-    EntityModel<Student> getOne(Long id);
+    StudentDTO getOne(Long id);
 
-    ResponseEntity<Student> updateOne(Long id, Student student);
+    StudentDTO updateOne(Long id, StudentDTO student);
 
-    ResponseEntity<Student> deleteOne(Long id);
+    void deleteOne(Long id);
 }

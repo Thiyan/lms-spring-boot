@@ -1,4 +1,4 @@
-package com.yanmakes.lms.v1.exception;
+package com.yanmakes.lms.v1.exception.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,12 +12,6 @@ public class ExceptionDetails {
     @JsonProperty(value = "error-message")
     private String message;
 
-    @JsonProperty(value = "invalid-field")
-    private String field;
-
-    @JsonProperty(value = "total-error-count")
-    private int errorCount;
-
     @JsonProperty(value = "details")
     private String details;
 
@@ -25,14 +19,6 @@ public class ExceptionDetails {
         this.dateTime = dateTime;
         this.message = message;
         this.details = details;
-    }
-
-    public ExceptionDetails(LocalDateTime dateTime, String message, String details, int errorCount, String field) {
-        this.dateTime = dateTime;
-        this.message = message;
-        this.details = details;
-        this.errorCount = errorCount;
-        this.field = field;
     }
 
     public LocalDateTime getDateTime() {
@@ -47,9 +33,4 @@ public class ExceptionDetails {
         return details;
     }
 
-    public int getErrorCount() { return errorCount; }
-
-    public String getField() {
-        return field;
-    }
 }
